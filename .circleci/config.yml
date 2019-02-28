@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/python:3.6.8
+    steps:
+      - checkout
+      - run:
+          name: python
+          command: python3 t.py
+      - run:
+          name: bash
+          command: |
+            touch {1..10}
+            ls -l --time-style=full-iso
+            touch 1 2 3
+            ls -l --time-style=full-iso
+            echo hoge > 1
+            ls -l --time-style=full-iso
